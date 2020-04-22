@@ -13,27 +13,43 @@ import CardMedia from '@material-ui/core/CardMedia';
 import './CountryDetails.scss';
 import CapitalWeatherDetails from '../../components/CapitalWeatherDetails/CapitalWeatherDetails';
 import { searchCountry } from '../CountrySearch/CountrySearchActions';
+import { getCapitalWeather } from '../CountryDetails/CapitalWeatherActions';
 
 class CountryDetails extends Component {
 
     componentDidMount() {
         console.log("this.props", this.props);
         // handle refresh case
-        if (!this.props.CountryDetails) {
+        if (!this.props.countryData.countryDetails) {
             this.props.searchCountry(this.props.match.params.countryName)
         }
     }
 
-    render() {
-        const countryDetails = this.props.countryDetails;
+    getCapitalWeatherDetails() {
+        this.props.getCapitalWeather(this.props.countryData.countryDetails.capital);
+    }
 
+    render() {
+        const countryDetails = this.props.countryData.countryDetails;
+        const capitalWeatherData = this.props.capitalWeatherData;
+
+        // initial loading on refresh
         if (!countryDetails) {
             return (
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30">
                     Fetching country details.....
+                </Typography>
+            );
+        } else if (this.props.countryData.error) {
+            // if api couldn't fetch data, show error
+            return (
+                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30">
+                    {this.props.countryData.error}
                 </Typography>
             )
         }
+
+        console.log('capitalWeatherDetails', capitalWeatherData);
 
         return (
             <main className="marginVertical30">
@@ -66,7 +82,7 @@ class CountryDetails extends Component {
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
-                                <Button size="small" color="primary">
+                                <Button size="small" color="primary" onClick={this.getCapitalWeatherDetails.bind(this)}>
                                     Capital Weather
                                 </Button>
                             </CardActions>
@@ -75,7 +91,9 @@ class CountryDetails extends Component {
                 </div>
 
                 {/* Capital Weather Information */}
-                <CapitalWeatherDetails />
+                {capitalWeatherData && capitalWeatherData.capitalWeatherDetails && (
+                    <CapitalWeatherDetails capitalWeatherData={capitalWeatherData} />
+                )}
             </main>
         );
     }
@@ -83,12 +101,14 @@ class CountryDetails extends Component {
 
 const mapStateToProps = state => {
     return {
-        ...state.countryData
+        countryData: { ...state.countryData },
+        capitalWeatherData: { ...state.capitalWeatherData }
     };
 }
 
 const mapDispatchToProps = {
-    searchCountry
+    searchCountry,
+    getCapitalWeather
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryDetails);

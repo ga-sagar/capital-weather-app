@@ -10,6 +10,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import './CapitalWeatherDetails.scss';
 
 const capitalWeatherDetails = (props) => {
+    const { capitalWeatherData } = props;
+    let { capitalWeatherDetails } = capitalWeatherData;
+
     return (
         <div className="marginVertical30">
             <Container maxWidth="md">
@@ -19,23 +22,25 @@ const capitalWeatherDetails = (props) => {
                 <Card >
                     <CardActionArea>
                         <CardContent>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                Capital : XYZ
-                                    </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Temperature : XYZ
-                                    </Typography>
+                                Temperature : {capitalWeatherDetails.current.temperature}
+                            </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Wind Speed : XYZ
-                                    </Typography>
+                                Wind Speed : {capitalWeatherDetails.current.wind_speed}
+                            </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Precip : XYZ
-                                    </Typography>
-                            <CardMedia
-                                className="weather-image"
-                                image="https://restcountries.eu/data/ind.svg"
-                                title="Country Flag"
-                            />
+                                Precip : {capitalWeatherDetails.current.precip}
+                            </Typography>
+                            {capitalWeatherDetails.current.weather_icons.map((val, index) => {
+                                return (
+                                    <CardMedia
+                                        key={index}
+                                        className="weather-image"
+                                        image={val}
+                                        title="weather-icon"
+                                    />
+                                )
+                            })}
                         </CardContent>
                     </CardActionArea>
                 </Card>
