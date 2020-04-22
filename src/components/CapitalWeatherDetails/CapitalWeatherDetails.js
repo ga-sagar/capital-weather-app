@@ -11,7 +11,15 @@ import './CapitalWeatherDetails.scss';
 
 const capitalWeatherDetails = (props) => {
     const { capitalWeatherData } = props;
-    let { capitalWeatherDetails } = capitalWeatherData;
+    let { capitalWeatherDetails, weatherError } = capitalWeatherData;
+
+    if (weatherError) {
+        return (
+            <Typography gutterBottom variant="h5" component="h2" className="marginVertical30">
+                {weatherError}
+            </Typography>
+        );
+    }
 
     return (
         <div className="marginVertical30">
