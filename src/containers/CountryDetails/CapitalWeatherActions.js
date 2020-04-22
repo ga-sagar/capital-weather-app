@@ -31,7 +31,6 @@ export const getCapitalWeather = (capital) => {
 
         getCapitalWeatherDetails(capital)
             .then(response => {
-                console.log('Response', response)
                 if (response && response.status === 200 && response.data) {
                     if (response.data.hasOwnProperty('success') && !response.data.success) {
                         dispatch(getCapitalWeatherFailure({

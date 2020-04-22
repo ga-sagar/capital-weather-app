@@ -18,7 +18,6 @@ import { getCapitalWeather } from '../CountryDetails/CapitalWeatherActions';
 class CountryDetails extends Component {
 
     componentDidMount() {
-        console.log("this.props", this.props);
         // handle refresh case
         if (!this.props.countryData.countryDetails) {
             this.props.searchCountry(this.props.match.params.countryName)
@@ -48,8 +47,6 @@ class CountryDetails extends Component {
                 </Typography>
             )
         }
-
-        console.log('capitalWeatherDetails', capitalWeatherData);
 
         return (
             <main className="marginVertical30">
