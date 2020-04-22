@@ -31,13 +31,11 @@ const capitalWeatherDetails = (props) => {
                             <Typography variant="body2" color="textSecondary" component="p">
                                 Precip : XYZ
                                     </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <CardMedia
-                                    className="weather-image"
-                                    image="https://restcountries.eu/data/ind.svg"
-                                    title="Country Flag"
-                                />
-                            </Typography>
+                            <CardMedia
+                                className="weather-image"
+                                image="https://restcountries.eu/data/ind.svg"
+                                title="Country Flag"
+                            />
                         </CardContent>
                     </CardActionArea>
                 </Card>
