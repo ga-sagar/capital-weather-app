@@ -35,14 +35,14 @@ class CountryDetails extends Component {
         // initial loading on refresh
         if (!countryDetails) {
             return (
-                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30">
+                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
                     Fetching country details.....
                 </Typography>
             );
         } else if (this.props.countryData.error) {
             // if api couldn't fetch data, show error
             return (
-                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30">
+                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
                     {this.props.countryData.error}
                 </Typography>
             )
@@ -88,6 +88,22 @@ class CountryDetails extends Component {
                 </div>
 
                 {/* Capital Weather Information */}
+
+                {/* Loading text */}
+                {capitalWeatherData && capitalWeatherData.isProcessing && (
+                    <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
+                        Fetching capital weather details.....
+                    </Typography>
+                )}
+
+                {/* API error */}
+                {capitalWeatherData && capitalWeatherData.weatherError && (
+                    <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
+                        {capitalWeatherData.weatherError}
+                    </Typography>
+                )}
+
+                {/* Information */}
                 {capitalWeatherData && capitalWeatherData.capitalWeatherDetails && (
                     <CapitalWeatherDetails capitalWeatherData={capitalWeatherData} />
                 )}
