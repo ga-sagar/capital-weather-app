@@ -26,7 +26,9 @@ export const searchCountry = (countryName) => {
     return dispatch => {
 
         dispatch(searchCountryStart({
-            isProcessing: true
+            isProcessing: true,
+            countryDetails: null,
+            error: null
         }));
 
         getCountryDetails(countryName)

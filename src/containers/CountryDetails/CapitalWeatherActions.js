@@ -26,7 +26,9 @@ export const getCapitalWeather = (capital) => {
     return dispatch => {
 
         dispatch(getCapitalWeatherStart({
-            isProcessing: true
+            isProcessing: true,
+            capitalWeatherDetails: null,
+            weatherError: null
         }));
 
         getCapitalWeatherDetails(capital)

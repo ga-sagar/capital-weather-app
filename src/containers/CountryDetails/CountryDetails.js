@@ -32,6 +32,15 @@ class CountryDetails extends Component {
         const countryDetails = this.props.countryData.countryDetails;
         const capitalWeatherData = this.props.capitalWeatherData;
 
+        if (this.props.countryData.error) {
+            // if api couldn't fetch data, show error
+            return (
+                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
+                    {this.props.countryData.error}
+                </Typography>
+            )
+        }
+
         // initial loading on refresh
         if (!countryDetails) {
             return (
@@ -39,13 +48,6 @@ class CountryDetails extends Component {
                     Fetching country details.....
                 </Typography>
             );
-        } else if (this.props.countryData.error) {
-            // if api couldn't fetch data, show error
-            return (
-                <Typography gutterBottom variant="h5" component="h2" className="marginVertical30 center">
-                    {this.props.countryData.error}
-                </Typography>
-            )
         }
 
         return (
