@@ -1,5 +1,5 @@
 import { GET_CAPITAL_WEATHER_START, GET_CAPITAL_WEATHER_SUCCESS, GET_CAPITAL_WEATHER_FAILURE } from './CapitalWeatherActionTypes';
-import { getCapitalWeatherDetails } from '../../services/weather.service';
+import { getCapitalWeatherDetails } from '../../services/WeatherService';
 
 const getCapitalWeatherStart = (payload) => {
     return {

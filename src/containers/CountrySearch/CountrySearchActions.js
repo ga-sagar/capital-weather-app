@@ -1,5 +1,5 @@
 import { SEARCH_COUNTRY_START, SEARCH_COUNTRY_SUCCESS, SEARCH_COUNTRY_FAILURE } from './CountrySearchActionTypes';
-import { getCountryDetails } from '../../services/country.service';
+import { getCountryDetails } from '../../services/CountryService';
 
 const searchCountryStart = (payload) => {
     return {
